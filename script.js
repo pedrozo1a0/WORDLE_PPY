@@ -1,6 +1,14 @@
 let intentos= 6;
 let diccionario = ['APPLE', 'HURLS', 'WINGS', 'YOUTH']
-const palabra = diccionario[Math.floor(Math.random() * diccionario.length)];
+const API="https://random-word-api.herokuapp.com/word?length=5&lang=es";
+fetch(API).then((response)=>{
+    response.json().then((body)=>{
+        palabra=body[0].toUpperCase();
+    });
+}).catch((error)=>{
+    console.log(error);
+    const palabra = diccionario[Math.floor(Math.random() * diccionario.length)];
+});
  const ERROR= document.getElementById("Error");  //Se busca en el html el mensaje de error y se inicializa
  ERROR.style.display = "none"                    //Se oculta el mensaje de error
 window.addEventListener('load', init)
